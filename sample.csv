@@ -1,31 +1,31 @@
 Unnamed: 0,Institute,Academic Program Name,Quota,Seat Type,Gender,Opening Rank,Closing Rank,Year,Round
-45,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1777.0,2016,1
-46,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,42.0,42.0,2016,1
-47,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,902.0,2016,1
-48,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,1
-49,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,285.0,420.0,2016,1
-1192,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1827.0,2016,2
-1193,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,94.0,94.0,2016,2
-1194,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,1019.0,2016,2
-1195,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,2
-1196,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,297.0,468.0,2016,2
-2323,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1827.0,2016,3
-2324,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,94.0,94.0,2016,3
-2325,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,1019.0,2016,3
-2326,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,3
-2327,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,297.0,468.0,2016,3
-3453,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1841.0,2016,4
-3454,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,94.0,94.0,2016,4
-3455,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,1019.0,2016,4
-3456,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,4
-3457,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,297.0,468.0,2016,4
-4583,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1841.0,2016,5
-4584,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,94.0,94.0,2016,5
-4585,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,1056.0,2016,5
-4586,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,5
-4587,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,297.0,468.0,2016,5
-5709,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN,,838.0,1841.0,2016,6
-5710,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OPEN (PwD),,94.0,94.0,2016,6
-5711,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL,,408.0,1098.0,2016,6
-5712,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,OBC-NCL (PwD),,45.0,45.0,2016,6
-5713,Indian Institute of Technology Bombay,"Aerospace Engineering (4 Years, Bachelor of Technology)",AI,SC,,297.0,468.0,2016,6
+45,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1777.0,2016,1
+46,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,42.0,42.0,2016,1
+47,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,902.0,2016,1
+48,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,1
+49,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,285.0,420.0,2016,1
+1192,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1827.0,2016,2
+1193,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,94.0,94.0,2016,2
+1194,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,1019.0,2016,2
+1195,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,2
+1196,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,297.0,468.0,2016,2
+2323,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1827.0,2016,3
+2324,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,94.0,94.0,2016,3
+2325,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,1019.0,2016,3
+2326,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,3
+2327,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,297.0,468.0,2016,3
+3453,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1841.0,2016,4
+3454,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,94.0,94.0,2016,4
+3455,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,1019.0,2016,4
+3456,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,4
+3457,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,297.0,468.0,2016,4
+4583,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1841.0,2016,5
+4584,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,94.0,94.0,2016,5
+4585,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,1056.0,2016,5
+4586,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,5
+4587,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,297.0,468.0,2016,5
+5709,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN,Gender-Neutral,838.0,1841.0,2016,6
+5710,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OPEN (PwD),Gender-Neutral,94.0,94.0,2016,6
+5711,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL,Gender-Neutral,408.0,1098.0,2016,6
+5712,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,OBC-NCL (PwD),Gender-Neutral,45.0,45.0,2016,6
+5713,IIT Bombay,"Aerospace Engineering (4 Years, B.Tech)",AI,SC,Gender-Neutral,297.0,468.0,2016,6

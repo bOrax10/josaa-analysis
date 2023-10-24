@@ -2,26 +2,43 @@ import React, { useState, useEffect } from 'react';
 import CsvTable from './Parse';
 
 const Institutes = () => {
+    const [instituteValue, setInstituteValue] = useState('');
     const [seatValue, setSeatValue] = useState('');
     const [genderValue, setGenderValue] = useState('');
     const [roundValue, setRoundValue] = useState('');
+    const [minRank, setMinRank] = useState('');
+    const [maxRank, setMaxRank] = useState('');
     const [tableData, setTableData] = useState([]);
+    const [instituteDropdownButtonText, setInstituteDropdownButtonText] = useState('Select');
     const [seatDropdownButtonText, setSeatDropdownButtonText] = useState('Select');
     const [genderDropdownButtonText, setGenderDropdownButtonText] = useState('Select');
     const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('Select');
     const [loading, setLoading] = useState(false);
-
+    const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'Indian School of Mines Dhanbad', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
     useEffect(() => {
         setLoading(true);
         // Add a one-second delay before making the API call
         const delay = setTimeout(() => {
-            fetchData(seatValue, genderValue, roundValue);
+            fetchData(instituteValue, seatValue, genderValue, roundValue, minRank, maxRank);
         }, 300); // 1000 milliseconds = 1 second
     
         // Clear the timeout if the component unmounts or the dependencies change
         return () => clearTimeout(delay);
-    }, [seatValue, genderValue, roundValue]);
+    }, [instituteValue, seatValue, genderValue, roundValue, minRank, maxRank]);
 
+    const handleInstituteDropdownChange = (event) => {
+        const value = event.target.getAttribute('data-value');
+        console.log(value);
+        if (value === 'Clear') {
+            setInstituteValue('');
+            setInstituteDropdownButtonText('Select');
+        }
+        else {
+            setInstituteValue(value);
+            setInstituteDropdownButtonText(value);
+        }
+    };
+    
     const handleSeatDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
         if (value === 'CLEAR') {
@@ -54,9 +71,19 @@ const Institutes = () => {
             setRoundDropdownButtonText(value);
         }
     };
+    
+    const handleMinRankChange = (event) => {
+        const value = event.target.value;
+        setMinRank(value);
+    };
 
-    const fetchData = (seat, gender, round) => {
-        fetch(`http://localhost:5000/get_csv?seat=${seat}&gender=${gender}&round=${round}`)
+    const handleMaxRankChange = (event) => {
+        const value = event.target.value;
+        setMaxRank(value);
+    };
+
+    const fetchData = (institute, seat, gender, round, minRank, maxRank) => {
+        fetch(`http://localhost:5000/get_csv?institute=${institute}&seat=${seat}&gender=${gender}&round=${round}&minrank=${minRank}&maxrank=${maxRank}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -74,8 +101,36 @@ const Institutes = () => {
         <div className="institutes">
             <h2 className="display-7 text-light fw-bold mx-3 mt-3">View All Institutes</h2>
             <p className="text-light ms-3">List of Institutes participating in JoSAA counseling.</p>
-        
+
+
             <div className="row m-4">
+                <div className="col-md-4">
+                    <div className="dropdown">
+                        <div className="institute">
+                            <p className="text-light">Institute</p>
+                            <button
+                                className="btn btn-secondary dropdown-toggle custom-dropdown-button col-12"
+                                type="button"
+                                id="dropdownMenuButton2"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                            >
+                                {instituteDropdownButtonText}
+                            </button>
+                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2" style={{ maxHeight: '200px', overflowY: 'auto' }}>
+                                {iits.map((iit, index) => (
+                                    <li>
+                                        <a className="dropdown-item" key={index} data-value={iit} href="#" onClick={handleInstituteDropdownChange}>
+                                            {iit}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="col-md-4">
                     <div className="dropdown">
                         <div className="seat-type">
@@ -151,7 +206,7 @@ const Institutes = () => {
                     </div>
                 </div>
 
-                <div className="col-md-4">
+                <div className="col-md-4 mt-3">
                     <div className="dropdown">
                         <div className="display-rounds">
                             <p className="text-light">Display Rounds</p>
@@ -215,20 +270,48 @@ const Institutes = () => {
                         </div>
                     </div>
                 </div>
-            </div>
 
-        <div className="table text-light">
-            {loading ? (
-                <div className="text-center">
-                    <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
+                <div className="col-md-4 mt-3">
+                    <div className="min-rank">
+                        <p className="text-light">Minimum Rank</p>
+                        <input
+                            type="text"
+                            className="form-control bg-secondary text-light border-0"
+                            value={minRank}
+                            onChange={(event) => {
+                                handleMinRankChange(event);
+                            }}
+                        />
                     </div>
                 </div>
-            ) : (
-                <CsvTable data={tableData} seatValue={seatValue} genderValue={genderValue} roundValue={roundValue} />
-            )}
+                
+                <div className="col-md-4 mt-3">
+                    <div className="max-rank ">
+                        <p className="text-light">Maximum Rank</p>
+                        <input
+                            type="text"
+                            className="form-control bg-secondary text-light border-0"
+                            value={maxRank}
+                            onChange={(event) => {
+                                handleMaxRankChange(event);
+                            }}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div className="table text-light">
+                {loading ? (
+                    <div className="text-center">
+                        <div className="spinner-border" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                ) : (
+                    <CsvTable data={tableData} instituteValue={instituteValue} seatValue={seatValue} genderValue={genderValue} roundValue={roundValue} minRank={minRank} maxRank={maxRank}/>
+                )}
+            </div>
         </div>
-    </div>
 );
 }
 

@@ -10,27 +10,39 @@ class CsvTable extends Component {
 
   componentDidMount() {
     // Fetch data when the component mounts
-    this.fetchData(this.props.seatValue,this.props.genderValue,this.props.roundValue);
+    this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
   }
 
   componentDidUpdate(prevProps) {
     // Re-fetch data when the seatValue prop changes
+    if (this.props.instituteValue !== prevProps.instituteValue) {
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
+    }
     if (this.props.seatValue !== prevProps.seatValue) {
-      this.fetchData(this.props.seatValue,this.props.genderValue,this.props.roundValue);
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
     }
     if (this.props.genderValue !== prevProps.genderValue) {
-      this.fetchData(this.props.seatValue,this.props.genderValue,this.props.roundValue);
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
     }
     if (this.props.roundValue !== prevProps.roundValue) {
-      this.fetchData(this.props.seatValue,this.props.genderValue,this.props.roundValue);
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
+    }
+    if (this.props.minRank !== prevProps.minRank) {
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
+    }
+    if (this.props.maxRank !== prevProps.maxRank) {
+      this.fetchData(this.props.instituteValue, this.props.seatValue,this.props.genderValue,this.props.roundValue, this.props.minRank, this.props.maxRank);
     }
   }
 
-  fetchData = (seatValue, genderValue, roundValue) => {
-    const seatParam = seatValue ? `?seat=${seatValue}` : `?seat=${''}`;
+  fetchData = (instituteValue, seatValue, genderValue, roundValue, minRank, maxRank) => {
+    const instituteParam = instituteValue ? `?institute=${instituteValue}` : `?institute=${''}`;
+    const seatParam = seatValue ? `&seat=${seatValue}` : `&seat=${''}`;
     const genderParam = genderValue ? `&gender=${genderValue}` : `&gender=${''}`;
     const roundParam = roundValue ? `&round=${roundValue[roundValue.length-1]}` :`&round=${''}`;
-    const filterParam = seatParam+genderParam+roundParam;
+    const minRankParam = minRank ? `&minrank=${minRank}` :`&minrank=${''}`;
+    const maxRankParam = maxRank ? `&maxrank=${maxRank}` :`&maxrank=${''}`;
+    const filterParam = instituteParam+seatParam+genderParam+roundParam+minRankParam+maxRankParam;
     console.log(filterParam);
     console.log(`http://localhost:5000/get_csv${filterParam}`);
     fetch(`http://localhost:5000/get_csv${filterParam}`)
@@ -51,7 +63,6 @@ class CsvTable extends Component {
             <tr>
               <th className='text-center'>Institute</th>
               <th className='text-center'>Academic Program Name</th>
-              <th className='text-center'>Quota</th>
               <th className='text-center'>Seat Type</th>
               <th className='text-center'>Gender</th>
               <th className='text-center'>Opening Rank</th>
@@ -65,7 +76,6 @@ class CsvTable extends Component {
               <tr key={index}>
                 <td className='text-center'>{row.Institute}</td>
                 <td className='text-center'>{row['Academic Program Name']}</td>
-                <td className='text-center'>{row.Quota}</td>
                 <td className='text-center'>{row['Seat Type']}</td>
                 <td className='text-center'>{row.Gender}</td>
                 <td className='text-center'>{row['Opening Rank']}</td>
