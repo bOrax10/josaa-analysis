@@ -41,7 +41,7 @@ const Home = () => {
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">View Institute-wise Cut-offs</h5>
                                 <p class="card-text" style={{ color: '#929690' }}>View the cut-off data with the selected institutes and further narrow down with your choice of programs.</p>
-                                <a href="#" class="btn col-8 col-lg-6 col-xl-5 col-md-6 mt-auto btn-primary">Get Started →</a>
+                                <a href="/institute-wise-cutoff" class="btn col-8 col-lg-6 col-xl-5 col-md-6 mt-auto btn-primary">Get Started →</a>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CsvTable from './Parse';
 
-const Institutes = () => {
+const InstituteWiseCutoff = () => {
     const [instituteValue, setInstituteValue] = useState('');
     const [seatValue, setSeatValue] = useState('');
     const [genderValue, setGenderValue] = useState('');
@@ -14,7 +14,7 @@ const Institutes = () => {
     const [genderDropdownButtonText, setGenderDropdownButtonText] = useState('Select');
     const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('Select');
     const [loading, setLoading] = useState(false);
-    const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'Indian School of Mines Dhanbad', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
+    const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
     useEffect(() => {
         setLoading(true);
         // Add a one-second delay before making the API call
@@ -315,4 +315,4 @@ const Institutes = () => {
 );
 }
 
-export default Institutes;
+export default InstituteWiseCutoff;
