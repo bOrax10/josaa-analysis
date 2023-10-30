@@ -41,7 +41,7 @@ const ViewInstitutes = () => {
             <div className="row">
                 {sortedIits.map((iit, index) => (
                     <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3" key={index}>
-                        <a href="#" className="custom-card-anchor text-decoration-none">
+                        <a href={`institutes/${iit}`} className="custom-card-anchor text-decoration-none">
                             <div className="custom-card">
                                 <div className="card bg-dark d-flex flex-column w-100 custom-card-hover">
                                     <div className="card-body d-flex flex-column align-items-center">

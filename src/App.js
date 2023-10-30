@@ -5,7 +5,7 @@ import Branches from './Branches';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InstituteWiseCutoff from './InstituteWiseCutoff';
 import ViewInstitutes from './ViewInstitutes';
-
+import IITDetails from './IITDetails';
 
 function App() {
   return (
@@ -26,6 +26,8 @@ function App() {
 					<Route exact path="/institutes">
 	              		<ViewInstitutes/>
 	            	</Route>
+					<Route path="/institutes/:iit" component={IITDetails}>
+					</Route>
           		</Switch>
         	</div>
       	</div>

@@ -47,7 +47,7 @@ const OffCanvas = () => {
                             </div>
 
                             <div class="col-12 my-2 d-flex">
-                                <a class="text-decoration-none" href="/">
+                                <a class="text-decoration-none" href="/institute-wise-cutoff">
                                     <div a class="card bg-dark text-light d-flex flex-column border-light">
                                         <div class="card-body d-flex flex-column me-5">
                                             <h6 class="card-title">View Institute-wise Cut-offs</h6>

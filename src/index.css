@@ -22,7 +22,6 @@ code {
 .custom-card-hover:hover {
   background-color: #ccbbbb;
   /* Change to your desired hover background color */
-  color: #333;
   /* Change to your desired hover text color */
   box-shadow: 0 5px 10px #929690;
   /* Optional shadow effect */

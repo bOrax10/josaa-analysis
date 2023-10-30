@@ -55,5 +55,13 @@ def get_filtered_csv():
     return response
 
 
+@app.route('/get_iit', methods=["GET"])
+def iit_details():
+    iit = request.args.get('iit', default='', type=str)
+    filtered_data = csv_data[csv_data['Institute']
+                             == iit]['Academic Program Name']
+    return jsonify(filtered_data.tolist())
+
+
 if __name__ == '__main__':
     app.run(debug=True)
