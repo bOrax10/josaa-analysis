@@ -8,7 +8,7 @@ CORS(app)
 
 # Load the CSV as a DataFrame
 csv_data = pd.read_csv(
-    'F:/VSCode/Web Dev/Projects/Josaa/josaa-analysis/sample.csv')
+    'F:/VSCode/Web Dev/Projects/Josaa/josaa-analysis/assets/ORCR_16_22_all.csv')
 csv_data.drop("Quota", axis=1)
 
 
@@ -26,6 +26,9 @@ def get_filtered_csv():
     minRank = request.args.get('minrank', default='', type=str)
     maxRank = request.args.get('maxrank', default='', type=str)
 
+    last_round = {2016: 5, 2017: 6, 2018: 7,
+                  2019: 6, 2020: 6, 2021: 6, 2022: 6}
+
     filtered_data = csv_data
     if (institute != ''):
         filtered_data = filtered_data[filtered_data['Institute'] == institute]
@@ -33,9 +36,13 @@ def get_filtered_csv():
         filtered_data = filtered_data[filtered_data['Seat Type'] == seat]
     if (gender != ''):
         filtered_data = filtered_data[filtered_data['Gender'] == gender]
-    if (round != ''):
+
+    if (round != '' and round != 'y'):
         filtered_data = filtered_data[filtered_data['Round'].astype(
             str) == round[-1]]
+    elif (round == 'y'):
+        filtered_data = filtered_data[filtered_data['Round']
+                                      == filtered_data['Year'].map(last_round)]
     if (minRank != ''):
         filtered_data = filtered_data[filtered_data['Closing Rank'] >= int(
             minRank)]
@@ -59,7 +66,7 @@ def get_filtered_csv():
 def iit_details():
     iit = request.args.get('iit', default='', type=str)
     filtered_data = csv_data[csv_data['Institute']
-                             == iit]['Academic Program Name']
+                             == iit]['Academic Program Name'].unique()
     return jsonify(filtered_data.tolist())
 
 

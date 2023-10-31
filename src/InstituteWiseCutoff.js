@@ -3,16 +3,16 @@ import CsvTable from './Parse';
 
 const InstituteWiseCutoff = () => {
     const [instituteValue, setInstituteValue] = useState('');
-    const [seatValue, setSeatValue] = useState('');
-    const [genderValue, setGenderValue] = useState('');
+    const [seatValue, setSeatValue] = useState('OPEN');
+    const [genderValue, setGenderValue] = useState('Gender-Neutral');
     const [roundValue, setRoundValue] = useState('');
     const [minRank, setMinRank] = useState('');
     const [maxRank, setMaxRank] = useState('');
     const [tableData, setTableData] = useState([]);
     const [instituteDropdownButtonText, setInstituteDropdownButtonText] = useState('Select');
-    const [seatDropdownButtonText, setSeatDropdownButtonText] = useState('Select');
-    const [genderDropdownButtonText, setGenderDropdownButtonText] = useState('Select');
-    const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('Select');
+    const [seatDropdownButtonText, setSeatDropdownButtonText] = useState(seatValue);
+    const [genderDropdownButtonText, setGenderDropdownButtonText] = useState(genderValue);
+    const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('All Rounds');
     const [loading, setLoading] = useState(false);
     const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
     useEffect(() => {
@@ -29,44 +29,29 @@ const InstituteWiseCutoff = () => {
     const handleInstituteDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
         console.log(value);
-        if (value === 'Clear') {
-            setInstituteValue('');
-            setInstituteDropdownButtonText('Select');
-        }
-        else {
-            setInstituteValue(value);
-            setInstituteDropdownButtonText(value);
-        }
+        setInstituteValue(value);
+        setInstituteDropdownButtonText(value);
     };
     
     const handleSeatDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
-        if (value === 'CLEAR') {
-            setSeatValue('');
-            setSeatDropdownButtonText('Select');
-        } else {
-            setSeatValue(value);
-            setSeatDropdownButtonText(value);
-        }
+        setSeatValue(value);
+        setSeatDropdownButtonText(value);
     };
 
     const handleGenderDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
-        if (value === 'CLEAR') {
-            setGenderValue('');
-            setGenderDropdownButtonText('Select');
-        } else {
-            setGenderValue(value);
-            setGenderDropdownButtonText(value);
-        }
+        setGenderValue(value);
+        setGenderDropdownButtonText(value);
     };
 
     const handleRoundDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
         if (value === 'All Rounds') {
             setRoundValue('');
-            setRoundDropdownButtonText('Select');
-        } else {
+            setRoundDropdownButtonText('All Rounds');
+        } 
+        else { 
             setRoundValue(value);
             setRoundDropdownButtonText(value);
         }
@@ -147,11 +132,6 @@ const InstituteWiseCutoff = () => {
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li>
-                                    <a className="dropdown-item" href="#" data-value="CLEAR" onClick={handleSeatDropdownChange}>
-                                        Clear
-                                    </a>
-                                </li>
-                                <li>
                                     <a className="dropdown-item" href="#" data-value="OPEN" onClick={handleSeatDropdownChange}>
                                         OPEN
                                     </a>
@@ -186,11 +166,6 @@ const InstituteWiseCutoff = () => {
                                 {genderDropdownButtonText}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="CLEAR" onClick={handleGenderDropdownChange}>
-                                        Clear
-                                    </a>
-                                </li>
                                 <li>
                                     <a className="dropdown-item" href="#" data-value="Gender-Neutral" onClick={handleGenderDropdownChange}>
                                         Gender-Neutral
