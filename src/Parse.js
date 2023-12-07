@@ -123,7 +123,7 @@ class CsvTable extends Component {
                 className="page-link text-light bg-dark"
                 onClick={() => this.handlePageChange(startIndex - 1)}
               >
-                ...
+                {"<"}
               </button>
             </li>
           )}
@@ -146,7 +146,7 @@ class CsvTable extends Component {
                 className="page-link text-light bg-dark"
                 onClick={() => this.handlePageChange(endIndex + 1)}
               >
-                ...
+                {">"}
               </button>
             </li>
           )}
