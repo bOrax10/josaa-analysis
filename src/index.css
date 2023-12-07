@@ -20,12 +20,26 @@ code {
 }
 
 .custom-card-hover:hover {
-  background-color: #ccbbbb;
+  background-color: #1c1b22;
   /* Change to your desired hover background color */
   /* Change to your desired hover text color */
   box-shadow: 0 5px 10px #929690;
   /* Optional shadow effect */
 }
+
+/* Add this to your stylesheet or inline style */
+/* Add this to your stylesheet or inline style */
+.page-link.active-link {
+  color:
+    /* Your desired color for the active link */
+  ;
+  background-color: #1c1b22;
+  /* Your desired background color for the active link */
+  border-color: white;
+  /* Set the border color to white */
+}
+
+
 
 
 .home {

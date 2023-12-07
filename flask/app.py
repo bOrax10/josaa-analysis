@@ -25,11 +25,12 @@ def get_filtered_csv():
     round = request.args.get('round', default='', type=str)
     minRank = request.args.get('minrank', default='', type=str)
     maxRank = request.args.get('maxrank', default='', type=str)
-
+    pageNumber = request.args.get('pageno', default=1, type=int)
     last_round = {2016: 5, 2017: 6, 2018: 7,
                   2019: 6, 2020: 6, 2021: 6, 2022: 6}
 
     filtered_data = csv_data
+
     if (institute != ''):
         filtered_data = filtered_data[filtered_data['Institute'] == institute]
     if (seat != ''):
@@ -46,12 +47,16 @@ def get_filtered_csv():
     if (minRank != ''):
         filtered_data = filtered_data[filtered_data['Closing Rank'] >= int(
             minRank)]
+
     if (maxRank != ''):
         filtered_data = filtered_data[filtered_data['Closing Rank'] <= int(
             maxRank)]
-
+    totalRows = len(filtered_data)
+    filtered_data = filtered_data.iloc[(pageNumber-1)*10:(pageNumber-1)*10+10]
     # Convert the filtered DataFrame to JSON
-    response_json = filtered_data.to_json(orient='records')
+    data_json = filtered_data.to_json(orient='records')
+    print(type(data_json))
+    response_json = {'total_rows': totalRows, 'data': data_json}
 
     response = make_response(response_json)
     response.headers['Content-Type'] = 'application/json'

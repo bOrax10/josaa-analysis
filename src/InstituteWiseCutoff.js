@@ -15,16 +15,17 @@ const InstituteWiseCutoff = () => {
     const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('All Rounds');
     const [loading, setLoading] = useState(false);
     const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
+    const [pageNumber,seatPageNumber] = useState(1);
     useEffect(() => {
         setLoading(true);
         // Add a one-second delay before making the API call
         const delay = setTimeout(() => {
-            fetchData(instituteValue, seatValue, genderValue, roundValue, minRank, maxRank);
+            fetchData(instituteValue, seatValue, genderValue, roundValue, minRank, maxRank, pageNumber);
         }, 300); // 1000 milliseconds = 1 second
     
         // Clear the timeout if the component unmounts or the dependencies change
         return () => clearTimeout(delay);
-    }, [instituteValue, seatValue, genderValue, roundValue, minRank, maxRank]);
+    }, [instituteValue, seatValue, genderValue, roundValue, minRank, maxRank, pageNumber]);
 
     const handleInstituteDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
@@ -67,8 +68,8 @@ const InstituteWiseCutoff = () => {
         setMaxRank(value);
     };
 
-    const fetchData = (institute, seat, gender, round, minRank, maxRank) => {
-        fetch(`http://localhost:5000/get_csv?institute=${institute}&seat=${seat}&gender=${gender}&round=${round}&minrank=${minRank}&maxrank=${maxRank}`)
+    const fetchData = (institute, seat, gender, round, minRank, maxRank, pageNumber) => {
+        fetch(`http://localhost:5000/get_csv?institute=${institute}&seat=${seat}&gender=${gender}&round=${round}&minrank=${minRank}&maxrank=${maxRank}&pageno=${pageNumber}`)
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
@@ -283,7 +284,7 @@ const InstituteWiseCutoff = () => {
                         </div>
                     </div>
                 ) : (
-                    <CsvTable data={tableData} instituteValue={instituteValue} seatValue={seatValue} genderValue={genderValue} roundValue={roundValue} minRank={minRank} maxRank={maxRank}/>
+                    <CsvTable data={tableData} instituteValue={instituteValue} seatValue={seatValue} genderValue={genderValue} roundValue={roundValue} minRank={minRank} maxRank={maxRank} pageNumber={pageNumber}/>
                 )}
             </div>
         </div>
