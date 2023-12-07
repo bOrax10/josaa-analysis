@@ -95,7 +95,7 @@ class CsvTable extends Component {
     const totalPages = Math.ceil(totalRows / itemsPerPage);
   
     // Don't render pagination if there is only one page
-    if (totalPages === 1) {
+    if (totalPages <= 1) {
       return null;
     }
   
@@ -106,82 +106,108 @@ class CsvTable extends Component {
     const endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages);
   
     return (
-        <nav>
-          <ul className="pagination justify-content-center" style={{ backgroundColor: "#1c1b22" }}>
-            <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+      <nav>
+        <ul className="pagination justify-content-center" style={{ backgroundColor: "#1c1b22" }}>
+          <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+            <button
+              className="page-link text-light bg-dark"
+              onClick={() => this.handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+          </li>
+          {startIndex > 1 && (
+            <li className="page-item">
               <button
                 className="page-link text-light bg-dark"
-                onClick={() => this.handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
+                onClick={() => this.handlePageChange(startIndex - 1)}
               >
-                Previous
+                ...
               </button>
             </li>
-            {pageNumbers.slice(startIndex - 1, endIndex).map((page) => (
-              <li
-                key={page}
-                className={`page-item ${page === currentPage ? 'active' : ''}`}
-                onClick={() => this.handlePageChange(page)}
+          )}
+          {pageNumbers.slice(startIndex - 1, endIndex).map((page) => (
+            <li
+              key={page}
+              className={`page-item ${page === currentPage ? 'active' : ''}`}
+              onClick={() => this.handlePageChange(page)}
+            >
+              <button
+                className={`page-link text-light ${page === currentPage ? 'bg-secondary border border-light' : 'bg-dark'}`}
               >
-                <button
-                  className={`page-link text-light ${page === currentPage ? 'bg-secondary border border-light' : 'bg-dark'}`}
-                >
-                  {page}
-                </button>
-              </li>
-            ))}
-            <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+                {page}
+              </button>
+            </li>
+          ))}
+          {endIndex < totalPages && (
+            <li className="page-item">
               <button
                 className="page-link text-light bg-dark"
-                onClick={() => this.handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
+                onClick={() => this.handlePageChange(endIndex + 1)}
               >
-                Next
+                ...
               </button>
             </li>
-          </ul>
-        </nav>
+          )}
+          <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
+            <button
+              className="page-link text-light bg-dark"
+              onClick={() => this.handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              Next
+            </button>
+          </li>
+        </ul>
+      </nav>
     );
   }
-  
   
 
   render() {
     const { data } = this.state;
-
+  
     return (
       <div className="m-5">
-
-        <table className="table table-bordered table-dark table-striped">
-          <thead>
-            <tr>
-              <th className="text-center">Institute</th>
-              <th className="text-center">Academic Program Name</th>
-              <th className="text-center">Seat Type</th>
-              <th className="text-center">Gender</th>
-              <th className="text-center">Opening Rank</th>
-              <th className="text-center">Closing Rank</th>
-              <th className="text-center">Year</th>
-              <th className="text-center">Round</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map((row, index) => (
-              <tr key={index}>
-                <td className="text-center">{row.Institute}</td>
-                <td className="text-center">{row['Academic Program Name']}</td>
-                <td className="text-center">{row['Seat Type']}</td>
-                <td className="text-center">{row.Gender}</td>
-                <td className="text-center">{row['Opening Rank']}</td>
-                <td className="text-center">{row['Closing Rank']}</td>
-                <td className="text-center">{row.Year}</td>
-                <td className="text-center">{row.Round}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        {this.renderPagination()}
+        {data.length === 0 ? (
+          <div className="alert alert-info" role="alert">
+            No data to be shown.
+          </div>
+        ) : (
+          <>
+            <table className="table table-bordered table-dark table-striped">
+              <thead>
+                <tr>
+                  <th className="text-center">Institute</th>
+                  <th className="text-center">Academic Program Name</th>
+                  <th className="text-center">Seat Type</th>
+                  <th className="text-center">Gender</th>
+                  <th className="text-center">Opening Rank</th>
+                  <th className="text-center">Closing Rank</th>
+                  <th className="text-center">Year</th>
+                  <th className="text-center">Round</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((row, index) => (
+                  <tr key={index}>
+                    <td className="text-center">{row.Institute}</td>
+                    <td className="text-center">{row['Academic Program Name']}</td>
+                    <td className="text-center">{row['Seat Type']}</td>
+                    <td className="text-center">{row.Gender}</td>
+                    <td className="text-center">{row['Opening Rank']}</td>
+                    <td className="text-center">{row['Closing Rank']}</td>
+                    <td className="text-center">{row.Year}</td>
+                    <td className="text-center">{row.Round}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+  
+            {this.renderPagination()}
+          </>
+        )}
       </div>
     );
   }
