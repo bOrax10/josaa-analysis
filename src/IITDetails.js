@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const IITDetails = () => {
     const { iit } = useParams();
@@ -26,20 +27,6 @@ const IITDetails = () => {
         fetchData();
     }, [iit]);
 
-const splitString = (str) => {
-    const regex = /\([^)]+\)/; // Corrected regex to capture content within the first set of brackets
-    const match = str.match(regex);
-    if (match) {
-        const title = str.substring(0, match.index).trim();
-        const text = match[0]; // Use match[0] to capture the entire matched text
-        return { title, text };
-    } else {
-        // If no opening bracket is found, consider the whole string as the title
-        return { title: str, text: '' };
-    }
-};
-
-    
 
     return (
         <div>
@@ -51,17 +38,32 @@ const splitString = (str) => {
                     </div>
                 </div>
             ) : (
-                <div className="row mx-5">
+                <div className="row mx-5 mb-5">
                     {data.map((item, index) => {
-                        const parsedItem = splitString(item);
+                        //console.log(item);
+                        const ind=item.indexOf('(');
+                        const branch=item.slice(0,ind-1);
+                        const course=item.slice(ind+1,item.length-1);
+                        console.log(branch);
+                        // Set a fixed width for each card
+                        const cardStyle = {
+                            width: '100%', // Adjust the width as needed
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            minHeight: '100%'
+                        };
+
                         return (
-                            <div className="col-md-6 col-lg-4 col-xl-3" key={index}>
-                                <div className="card mb-4 bg-dark m-2">
-                                    <div className="card-body text-light">
-                                        <h5 className="card-title">{parsedItem.title}</h5>
-                                        <p className="card-text">{parsedItem.text}</p>
+                            <div className="col-md-6 col-lg-4 col-xl-3 d-flex mt-4" key={index}>
+                                <Link to={`${iit}/${item}`} style={{ textDecoration: 'none', width:'100%'}}>
+                                    <div className="card bg-dark text-light d-flex flex-column" style={cardStyle}>
+                                        <div className="card-body d-flex flex-column">
+                                            <h5 className="card-title">{branch}</h5>
+                                            <p className="card-text mt-auto text-secondary">{course}</p>
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         );
                     })}

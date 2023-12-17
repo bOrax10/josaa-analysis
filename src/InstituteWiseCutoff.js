@@ -15,7 +15,7 @@ const InstituteWiseCutoff = () => {
     const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('All Rounds');
     const [loading, setLoading] = useState(false);
     const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
-    const [pageNumber,seatPageNumber] = useState(1);
+    const [pageNumber,setPageNumber] = useState(1);
     useEffect(() => {
         setLoading(true);
         // Add a one-second delay before making the API call

@@ -102,8 +102,18 @@ class CsvTable extends Component {
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
   
     // Calculate the start and end index for the displayed pages
-    const startIndex = Math.max(currentPage - Math.floor(itemsPerPage / 2), 1);
-    const endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages);
+    let startIndex, endIndex;
+  
+    // For small screens, show only 5 numbers
+    if (window.innerWidth < 576) {
+      const maxPagesToShow = 3;
+  
+      startIndex = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
+      endIndex = Math.min(startIndex + maxPagesToShow - 1, totalPages);
+    } else {
+      startIndex = Math.max(currentPage - Math.floor(itemsPerPage / 2), 1);
+      endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages);
+    }
   
     return (
       <nav>

@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import InstituteWiseCutoff from './InstituteWiseCutoff';
 import ViewInstitutes from './ViewInstitutes';
 import IITDetails from './IITDetails';
+import BranchDetails from './BranchDetails';
+import BranchWiseCutoff from './BranchWiseCutoff';
 
 function App() {
   return (
@@ -26,13 +28,20 @@ function App() {
 					<Route exact path="/institutes">
 	              		<ViewInstitutes/>
 	            	</Route>
-					<Route path="/institutes/:iit" component={IITDetails}>
-					</Route>
+					<Route path="/institutes/:iit">
+              			{/* Nested route for IIT details */}
+              			<Route exact path="/institutes/:iit" component={IITDetails} />
+						{/* Nested route for branch details */}
+						<Route exact path="/institutes/:iit/:item" component={BranchDetails} />
+            		</Route>
+					<Route exact path="/branch-wise-cutoff">
+	              		<BranchWiseCutoff/>
+	            	</Route>
           		</Switch>
         	</div>
       	</div>
     </Router>
-  );
+  );	
 }
 
 export default App;
