@@ -15,6 +15,8 @@ const InstituteWiseCutoff = () => {
     const [roundDropdownButtonText, setRoundDropdownButtonText] = useState('All Rounds');
     const [loading, setLoading] = useState(false);
     const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
+    const seatTypes=['OPEN', 'OBC-NCL', 'SC', 'ST', 'OPEN (PwD)', 'OBC-NCL (PwD)',
+    'SC (PwD)', 'ST (PwD)', 'EWS', 'EWS (PwD)'];
     const [pageNumber,setPageNumber] = useState(1);
     useEffect(() => {
         setLoading(true);
@@ -132,21 +134,13 @@ const InstituteWiseCutoff = () => {
                                 {seatDropdownButtonText}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="OPEN" onClick={handleSeatDropdownChange}>
-                                        OPEN
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="SC" onClick={handleSeatDropdownChange}>
-                                        SC
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="ST" onClick={handleSeatDropdownChange}>
-                                        ST
-                                    </a>
-                                </li>
+                                {seatTypes.map((seat,index) => (
+                                    <li>
+                                        <a className="dropdown-item" href="#" key={index} data-value={seat} onClick={handleSeatDropdownChange}>
+                                            {seat}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>

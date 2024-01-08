@@ -86,6 +86,47 @@ def branch_details():
     return result_list
 
 
+@app.route('/get_iits_by_branch', methods=["GET"])
+def get_iits_by_branch():
+    branch = request.args.get('branch', default='', type=str)
+    filtered_data = csv_data
+    if (branch != ''):
+        filtered_data = filtered_data[filtered_data['Category'].str.contains(
+            branch, case=False, na=False)]
+    filtered_data = filtered_data.groupby(
+        'Institute')['Academic Program Name'].unique()
+    response_json = filtered_data.to_json()
+
+    response = make_response(response_json)
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+
+    return response
+
+
+@app.route('/get_courses_from_institute', methods=["GET"])
+def get_courses_from_institute():
+    institute = request.args.get('institute', default='', type=str)
+    if (institute != ''):
+        sr = csv_data[csv_data['Institute'] == institute]['Course'].unique()
+        return sr.tolist()
+    return []
+
+
+@app.route('/get_programs_from_course', methods=["GET"])
+def get_programs_from_course():
+    institute = request.args.get('institute', default='', type=str)
+    course = request.args.get('course', default='', type=str)
+    if (institute != ''):
+        if (course != ''):
+            df = csv_data[csv_data['Institute'] == institute]
+            sr = df[df['Course'] == course]['Category'].unique()
+            return sr.tolist()
+    return []
+
+
 @app.route('/get_csv_by_branch', methods=["GET"])
 def get_branch_wise_cutoff():
     branch = request.args.get('branch', default='', type=str)
@@ -125,7 +166,6 @@ def get_branch_wise_cutoff():
     filtered_data = filtered_data.iloc[(pageNumber-1)*10:(pageNumber-1)*10+10]
     # Convert the filtered DataFrame to JSON
     data_json = filtered_data.to_json(orient='records')
-    print(type(data_json))
     response_json = {'total_rows': totalRows, 'data': data_json}
 
     response = make_response(response_json)

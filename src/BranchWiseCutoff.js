@@ -20,7 +20,11 @@ const BranchWiseCutoff = () => {
     'Agricultural and Food', 'Geology', 'Architecture', 'Economics', 'Instrumentation',
     'Manufacturing', 'Mining', 'Ocean and Naval', 'Design', 'Miscellaneous', 'Polymer', 
     'Environmental', 'Mineral', 'Petroleum', 'Ceramic', 'Metallurgy', 'Pharmaceutics',
-    'Data Science', 'Artificial Intelligence', 'Statistics',]
+    'Data Science', 'Artificial Intelligence', 'Statistics']
+    
+    const seatTypes=['OPEN', 'OBC-NCL', 'SC', 'ST', 'OPEN (PwD)', 'OBC-NCL (PwD)',
+    'SC (PwD)', 'ST (PwD)', 'EWS', 'EWS (PwD)'];
+
     const [pageNumber,setPageNumber] = useState(1);
     useEffect(() => {
         setLoading(true);
@@ -138,21 +142,13 @@ const BranchWiseCutoff = () => {
                                 {seatDropdownButtonText}
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="OPEN" onClick={handleSeatDropdownChange}>
-                                        OPEN
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="SC" onClick={handleSeatDropdownChange}>
-                                        SC
-                                    </a>
-                                </li>
-                                <li>
-                                    <a className="dropdown-item" href="#" data-value="ST" onClick={handleSeatDropdownChange}>
-                                        ST
-                                    </a>
-                                </li>
+                                {seatTypes.map((seat,index) => (
+                                    <li>
+                                        <a className="dropdown-item" href="#" key={index} data-value={seat} onClick={handleSeatDropdownChange}>
+                                            {seat}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                     </div>

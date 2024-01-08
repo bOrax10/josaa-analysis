@@ -8,6 +8,9 @@ import ViewInstitutes from './ViewInstitutes';
 import IITDetails from './IITDetails';
 import BranchDetails from './BranchDetails';
 import BranchWiseCutoff from './BranchWiseCutoff';
+import BranchWiseInstitute from './BranchWiseInstitute';
+import AnalyzeRoundWiseTrends from './AnalyzeRoundWiseTrends';
+import AnalyzeBranchWiseTrends from './AnalyzeBranchWiseTrends';
 
 function App() {
   return (
@@ -20,7 +23,10 @@ function App() {
 	              		<Home/>
             		</Route>
             		<Route exact path="/branches">
-		              	<Branches/>
+						<Branches/>
+            		</Route>
+					<Route exact path="/branches/:branch">
+						<BranchWiseInstitute/>
             		</Route>
             		<Route exact path="/institute-wise-cutoff">
 	              		<InstituteWiseCutoff/>
@@ -36,6 +42,12 @@ function App() {
             		</Route>
 					<Route exact path="/branch-wise-cutoff">
 	              		<BranchWiseCutoff/>
+	            	</Route>
+					<Route exact path="/analyze-branch-wise-cutoff">
+	              		<AnalyzeBranchWiseTrends/>
+	            	</Route>
+					<Route exact path="/analyze-round-wise-cutoff">
+	              		<AnalyzeRoundWiseTrends/>
 	            	</Route>
           		</Switch>
         	</div>

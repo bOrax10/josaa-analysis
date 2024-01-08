@@ -36,7 +36,7 @@ const OffCanvas = () => {
                             </div>
 
                             <div class="col-12 my-2 d-flex">
-                                <a class="text-decoration-none" href="/">
+                                <a class="text-decoration-none" href="/branch-wise-cutoff">
                                     <div a class="card bg-dark text-light d-flex flex-column border-light ">
                                         <div class="card-body d-flex flex-column me-5">
                                             <h6 class="card-title">View Branch-wise Cut-offs</h6>
@@ -63,17 +63,6 @@ const OffCanvas = () => {
                                         <div class="card-body d-flex flex-column">
                                             <h6 class="card-title">Analyse Branch-wise Cut-off Trends</h6>
                                             <small> <p class="card-text" style={{ color: '#929690' }}>Compare the cutoff trends of courses in a particular branch of engineering.</p></small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="col-12 my-2 d-flex">
-                                <a class="text-decoration-none" href="/">
-                                    <div a class="card bg-dark text-light d-flex flex-column border-light">
-                                        <div class="card-body d-flex flex-column">
-                                            <h6 class="card-title">Analyse Institute-wise Cut-off Trends</h6>
-                                            <small> <p class="card-text" style={{ color: '#929690' }}>Compare the cut-off trends of various courses offered by an institute.</p></small>
                                         </div>
                                     </div>
                                 </a>
