@@ -75,13 +75,34 @@ def iit_details():
     return jsonify(filtered_data.tolist())
 
 
-@app.route('/get_branch_data', methods=["GET"])
-def branch_details():
-    iit = request.args.get('iit', default='', type=str)
-    branch = request.args.get('branch', default='', type=str)
-    filtered_data = csv_data[csv_data['Institute'] == iit]
-    filtered_data = filtered_data[filtered_data['Academic Program Name'] == branch]
-    filtered_data = filtered_data[filtered_data['Seat Type'] == "OPEN"]
+@app.route('/get_round_chart_data', methods=["GET"])
+def get_round_chart_data():
+    institute = request.args.get('institute', default='', type=str)
+    course = request.args.get('course', default='', type=str)
+    program = request.args.get('program', default='', type=str)
+    seatType = request.args.get('seat_type', default='', type=str)
+    gender = request.args.get('gender', default='', type=str)
+    filtered_data = csv_data
+    if (institute != ''):
+        filtered_data = filtered_data[filtered_data['Institute'] == institute]
+    if (program != ''):
+        filtered_data = filtered_data[filtered_data['Category'].str.contains(
+            program, case=False, na=False)]
+    if (course != ''):
+        if ('Dual Degree' in course):
+            filtered_data = filtered_data[filtered_data['Course'].str.contains(
+                'Dual Degree', case=False, na=False)]
+        elif ('Integrated' in course):
+            filtered_data = filtered_data[filtered_data['Course'].str.contains(
+                'Integrated', case=False, na=False)]
+        else:
+            filtered_data = filtered_data[filtered_data['Course'].str.contains(
+                course, case=False, na=False)]
+    if (seatType != ''):
+        filtered_data = filtered_data[csv_data['Seat Type'] == seatType]
+    if (gender != ''):
+        filtered_data = filtered_data[csv_data['Gender'] == gender]
+
     result_list = filtered_data.to_json(orient='records')
     return result_list
 

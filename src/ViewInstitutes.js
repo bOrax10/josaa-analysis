@@ -37,22 +37,27 @@ const ViewInstitutes = () => {
     ]);
 
     return (
-        <div className="container mt-5">
-            <div className="row">
-                {sortedIits.map((iit, index) => (
-                    <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3" key={index}>
-                        <a href={`institutes/${iit}`} className="custom-card-anchor text-decoration-none">
-                            <div className="custom-card">
-                                <div className="card bg-dark d-flex flex-column w-100 custom-card-hover">
-                                    <div className="card-body d-flex flex-column align-items-center">
-                                        <h5 className="card-title text-light">{iit}</h5>
-                                        <p className="card-text" style={{ color: '#929690' }}>{iitMap.get(iit)}</p>
+        <div>
+            <h2 className="display-7 text-light fw-bold mx-3 mt-3">View All Institutes</h2>
+            <p className="text-light ms-3">List of Institutes participating in JoSAA counseling.</p>
+
+            <div className="container mt-5">
+                <div className="row">
+                    {sortedIits.map((iit, index) => (
+                        <div className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3" key={index}>
+                            <a href={`institutes/${iit}`} className="custom-card-anchor text-decoration-none">
+                                <div className="custom-card">
+                                    <div className="card bg-dark d-flex flex-column w-100 custom-card-hover">
+                                        <div className="card-body d-flex flex-column align-items-center">
+                                            <h5 className="card-title text-light">{iit}</h5>
+                                            <p className="card-text" style={{ color: '#929690' }}>{iitMap.get(iit)}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                ))}
+                            </a>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

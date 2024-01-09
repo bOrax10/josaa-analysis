@@ -1,4 +1,42 @@
 import React, { useState, useEffect } from 'react';
+import { Line } from 'react-chartjs-2';
+import { Colors } from 'chart.js';
+import Chart from 'chart.js/auto'; 
+Chart.register(Colors);
+
+const chartOptions = {
+    responsive: true,
+    scales: {
+        x: {
+            type: 'category',
+            labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Round 6", "Round 7"],
+            ticks: {
+                color: 'rgba(255, 255, 255, 0.8)', // Light grayish-white for x-axis labels
+            },
+            grid: {
+                color: 'rgba(255, 255, 255, 0.2)', // Light grayish-white for x-axis gridlines
+            },
+        },
+        y: {
+            beginAtZero: true,
+            ticks: {
+                color: 'rgba(255, 255, 255, 0.8)', // Light grayish-white for y-axis labels
+            },
+            grid: {
+                color: 'rgba(255, 255, 255, 0.2)', // Light grayish-white for y-axis gridlines
+            },
+        },
+    },
+    plugins: {
+        legend: {
+            labels: {
+                color: 'rgba(255, 255, 255, 0.8)', // Light grayish-white for legend labels
+            },
+        },
+    },
+};
+
+
 
 const AnalyzeRoundWiseTrends = () => {
     const [instituteValue, setInstituteValue] = useState('');
@@ -13,6 +51,9 @@ const AnalyzeRoundWiseTrends = () => {
     const [programDropdownButtonText, setProgramDropdownButtonText] = useState(programValue);
     const [instituteDropdownButtonText, setInstituteDropdownButtonText] = useState('Select');
     const [CourseDropdownButtonText, setCourseDropdownButtonText] = useState('Select');
+    const [allDropdownsSelected, setAllDropdownsSelected] = useState(false);
+    const [chartData, setChartData] = useState([]);
+    const [loading, setLoading] = useState(true); 
 
     const iits=['Clear','IIT Bhubaneswar', 'IIT Bombay', 'IIT Mandi', 'IIT Delhi', 'IIT Indore', 'IIT Kharagpur', 'IIT Hyderabad', 'IIT Jodhpur', 'IIT Kanpur', 'IIT Madras', 'IIT Gandhinagar', 'IIT Patna', 'IIT Roorkee', 'IIT Ropar', 'IIT (BHU) Varanasi', 'IIT Guwahati', 'IIT Bhilai', 'IIT Goa', 'IIT Palakkad', 'IIT Tirupati', 'IIT Jammu', 'IIT Dharwad', 'IIT (ISM) Dhanbad']
     const seatTypes=['OPEN', 'OBC-NCL', 'SC', 'ST', 'OPEN (PwD)', 'OBC-NCL (PwD)',
@@ -52,6 +93,67 @@ const AnalyzeRoundWiseTrends = () => {
         }
     }, [CourseValue]);
 
+    const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/get_round_chart_data?institute=${instituteValue}&course=${CourseValue}&program=${programValue}&seat_type=${seatValue}&gender=${genderValue}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log(data);
+            setChartData(data);
+            setLoading(false);
+            } catch (error) {
+            console.error('Error fetching data:', error);
+            }
+        };
+    
+    useEffect(() => {
+        fetchData();
+    }, [instituteValue, CourseValue, programValue, seatValue, genderValue]);
+        
+    useEffect(() => {
+        setAllDropdownsSelected(instituteValue !== '' && CourseValue !== '' && programValue !== '' && seatValue !== '' && genderValue !== '');
+    }, [instituteValue, CourseValue, programValue, seatValue, genderValue]);
+
+    const closingRanksMap = new Map();
+    if (Array.isArray(chartData)) {
+        chartData.forEach(item => {
+            const year = item.Year;
+            const round = item.Round;
+            const closingRank = item["Closing Rank"];
+
+            if (year >= 2016 && year <= 2022) {
+                if (!closingRanksMap.has(year)) {
+                    closingRanksMap.set(year, {});
+                }
+
+            closingRanksMap.get(year)[round] = closingRank;
+            }
+        });
+    }
+
+    const Data = {
+        labels: ["Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Round 6", "Round 7"],
+        datasets: []
+    };
+
+    closingRanksMap.forEach((roundsData, year) => {
+        const dataForYear = {
+            label: `Year ${year}`,
+            data: Data.labels.map(label => {
+                const round = parseInt(label.replace("Round ", ""));
+                const value = roundsData[round];
+                return value;
+        }),
+        fill: false,
+        //borderColor: getRandomColor(),
+    };
+
+    Data.datasets.push(dataForYear);
+  });
+
+
     const handleInstituteDropdownChange = (event) => {
         const value = event.target.getAttribute('data-value');
         console.log(value);
@@ -61,6 +163,7 @@ const AnalyzeRoundWiseTrends = () => {
         setProgramDropdownButtonText('Select'); // Reset the program dropdown text
         setCourses([]); // Clear the courses data
         setPrograms([]); // Clear the programs data
+        setChartData([]);
         if (value !== 'Clear') {
             setInstituteValue(value);
             setInstituteDropdownButtonText(value);
@@ -238,7 +341,20 @@ const AnalyzeRoundWiseTrends = () => {
                     </ul>
                 </div>
             </div>
-            
+
+            <div className="text-light m-3 d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+                <div className="container-lg">
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : allDropdownsSelected ? (
+                        <div>
+                            <Line data={Data} options={chartOptions} />
+                        </div>
+                    ) : (
+                        <div className="alert alert-info" role="alert">No data to be shown. Please select all dropdown values.</div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
