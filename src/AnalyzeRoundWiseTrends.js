@@ -204,7 +204,7 @@ const AnalyzeRoundWiseTrends = () => {
     return ( 
         <div>
             <h2 className="display-7 text-light fw-bold mx-3 mt-3">Analyse Round-wise Cut-off Trends</h2>
-            <p className="text-light ms-3 me-3">Compare the cut-offs of a course in various rounds over 7 years in the JoSAA seat allocation process. This helps understand the likely range of changes to the closing ranks throught the counselling process. </p>
+            <p className="text-light ms-3 me-3">Compare the cut-offs of a course in various rounds over 6 years in the JoSAA seat allocation process. This helps understand the likely range of changes to the closing ranks throught the counselling process. </p>
 
             <div className="row m-4">
                 <div className="col-md-4">
