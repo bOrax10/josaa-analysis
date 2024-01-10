@@ -13,8 +13,12 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code into the container
 COPY flask/ .
 
+# Grant execute permissions to the start.sh script
+COPY start.sh .
+RUN chmod +x start.sh
+
 # Expose the port that your Flask app listens on
 EXPOSE 5000
 
-# Start the Flask app
-CMD ["python", "app.py"]
+# Start the Flask app using the start.sh script
+CMD ["./start.sh"]
