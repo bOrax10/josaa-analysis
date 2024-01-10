@@ -3,12 +3,12 @@ from flask import Flask, render_template, jsonify, make_response, request
 from flask_cors import CORS
 
 app = Flask(
-    __name__, template_folder="F:/VSCode/Web Dev/Projects/Josaa/josaa-analysis/src")
+    __name__, template_folder="./src")
 CORS(app)
 
 # Load the CSV as a DataFrame
 csv_data = pd.read_csv(
-    '/assets/ORCR_16_22_all.csv')
+    'ORCR_16_22_all.csv')
 csv_data.drop("Quota", axis=1)
 
 
