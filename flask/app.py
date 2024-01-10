@@ -8,7 +8,7 @@ CORS(app)
 
 # Load the CSV as a DataFrame
 csv_data = pd.read_csv(
-    'F:/VSCode/Web Dev/Projects/Josaa/josaa-analysis/assets/ORCR_16_22_all.csv')
+    '/assets/ORCR_16_22_all.csv')
 csv_data.drop("Quota", axis=1)
 
 
